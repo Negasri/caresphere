@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UserRound, Settings, Phone, Users, Shield, Heart, CalendarClock } from "lucide-react";
+import { UserRound, Settings, Phone, Users, Shield, Heart, CalendarClock, Bell } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 
 const Profile = () => {
