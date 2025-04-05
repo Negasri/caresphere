@@ -1,12 +1,26 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { CalendarCheck, Bell, UserRound, Heart, Activity, Phone, Users, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const [showWelcomeBanner, setShowWelcomeBanner] = useState(true);
+
+  // Show welcome toast when the component mounts
+  useEffect(() => {
+    if (showWelcomeBanner) {
+      toast({
+        title: "Welcome to CareSphere",
+        description: "Your gateway to comfort",
+        duration: 5000,
+      });
+    }
+  }, [showWelcomeBanner]);
+
   // Mock data
   const healthStats = {
     heartRate: 72,
@@ -31,6 +45,24 @@ const Index = () => {
       <Navigation />
       
       <main className="container max-w-4xl pt-8 px-4">
+        {showWelcomeBanner && (
+          <div className="mb-6 p-4 bg-gradient-to-r from-care-600 to-healing-500 text-white rounded-lg shadow-md">
+            <div className="flex justify-between items-center">
+              <div>
+                <h2 className="text-2xl font-bold">Welcome to CareSphere</h2>
+                <p className="text-white/90">Your gateway to comfort</p>
+              </div>
+              <Button 
+                variant="ghost" 
+                className="text-white hover:bg-white/20"
+                onClick={() => setShowWelcomeBanner(false)}
+              >
+                Dismiss
+              </Button>
+            </div>
+          </div>
+        )}
+
         <header className="mb-8 text-left">
           <h1 className="text-3xl font-bold text-gray-900">Welcome, Mary</h1>
           <p className="text-muted-foreground">Today is a great day to stay healthy!</p>
