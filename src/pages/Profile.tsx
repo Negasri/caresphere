@@ -1,22 +1,83 @@
 
-import React from "react";
+import React, { useState } from "react";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { UserRound, Settings, Phone, Users, Shield, Heart, CalendarClock, Bell } from "lucide-react";
+import { UserRound, Settings, Phone, Users, Shield, Heart, CalendarClock, Bell, Video } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const Profile = () => {
+  const [isRecordingGuideOpen, setIsRecordingGuideOpen] = useState(false);
+
   return (
     <div className="min-h-screen pb-20 md:pl-64">
       <Navigation />
       
       <main className="container max-w-4xl pt-8 px-4">
-        <header className="mb-8 text-left">
-          <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
-          <p className="text-muted-foreground">Manage your personal information and settings</p>
+        <header className="mb-8 text-left flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Profile</h1>
+            <p className="text-muted-foreground">Manage your personal information and settings</p>
+          </div>
+          
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" className="gap-2">
+                <Video className="h-4 w-4" />
+                Recording Guide
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[500px]">
+              <DialogHeader>
+                <DialogTitle>How to Record a Demo of CareSphere</DialogTitle>
+                <DialogDescription>
+                  Follow these steps to create a demonstration video of the application
+                </DialogDescription>
+              </DialogHeader>
+              
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Step 1: Choose a Recording Tool</h4>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <li>Windows: Use built-in Xbox Game Bar (Win+G) or download OBS Studio</li>
+                    <li>Mac: Use QuickTime Player (File → New Screen Recording)</li>
+                    <li>Browser: Try Loom or Screencastify extensions</li>
+                  </ul>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="font-medium">Step 2: Plan Your Demo</h4>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <li>Start at Home screen to show health overview</li>
+                    <li>Navigate to Calendar to demonstrate appointment scheduling</li>
+                    <li>Show medication tracking features</li>
+                    <li>Explore Profile settings and preferences</li>
+                    <li>Demonstrate emergency contact functionality</li>
+                  </ul>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="font-medium">Step 3: Record Your Screen</h4>
+                  <p className="text-sm">Start your recording software, narrate as you navigate through the application, and save the file when complete.</p>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="font-medium">Step 4: Share Your Demo</h4>
+                  <p className="text-sm">Upload to YouTube, cloud storage, or embed in your presentation materials.</p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </header>
 
         <div className="mb-8">
